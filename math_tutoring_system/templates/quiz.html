@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout with Back Button</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    
+    <!-- Main content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Your page content here -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Page Content</h1>
+            <p>This is where your main content will go. You can replace this with your actual page content.</p>
+        </div>
+    </main>
+
+    <!-- Back Button fixed at bottom -->
+    {% block backbutton %}
+    <footer class="bg-white py-4 shadow-lg fixed inset-x-0 bottom-0">
+        <div class="container mx-auto text-center">
+            <button onclick="goBack()" class="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600">
+                Back
+            </button>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- JavaScript to go back -->
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

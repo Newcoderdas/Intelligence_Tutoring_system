@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.name }} - Lectures</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    {% include "header.html" %}
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">{{ course.name }}</h1>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            {% for lecture in lectures %}
+                <button onclick="loadVideo('{{ lecture.video_url }}')" class="block w-full text-left py-2 px-4 mb-2 bg-gray-200 rounded hover:bg-gray-300">
+                    {{ lecture.title }}
+                </button>
+
+                <div id="video-container" class="mt-4">
+                    <!-- Button to submit exercise -->
+                    <a href="{% url 'lecture_detail' lecture.id %}" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600">
+                        Perform Exercise for this Lecture
+                    </a>
+                </div>
+
+                <!-- Check if there are associated exercises -->
+                {% for exercise in lecture.exercises.all %}
+                    <a href="{% url 'submit_exercise' exercise.id %}" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600">
+                        Perform Exercise
+                    </a>
+                {% empty %}
+                    <!-- Handle the case where no exercises are available -->
+                    <p>No exercises available for this lecture.</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function loadVideo(url) {
+            const videoContainer = document.getElementById('video-container');
+            videoContainer.innerHTML = `
+                <video controls class="w-full h-auto rounded-lg shadow-md">
+                    <source src="${url}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        }
+    </script>
+    {% include "footer.html" %}
+</body>
+</html>

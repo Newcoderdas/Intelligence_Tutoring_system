@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Marks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    {% include "header.html" %}
+    
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">My Marks</h1>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <table class="w-full table-auto">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Exercise</th>
+                        <th class="px-4 py-2">Marks Obtained</th>
+                        <th class="px-4 py-2">Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                        <tr class="border-t">
+                            <td class="px-4 py-2">{{ submission.exercise.lecture.title }}</td>
+                            <td class="px-4 py-2">{{ submission.marks_obtained }}</td>
+                            <td class="px-4 py-2">{{ submission.feedback }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Intelligence</title>
+
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-100">
+    {% csrf_token %}
+    
+{%include "header.html" %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+                <div class="icon text-center text-4xl text-blue-500 mb-4">&#128218;</div>
+                <div class="text-center font-bold text-lg text-gray-700">
+                    <a href="{% url 'course_list' %}" class="hover:text-blue-600">Lectures or Videos</a>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+                <div class="icon text-center text-4xl text-green-500 mb-4">&#128221;</div>
+                <div class="text-center font-bold text-lg text-gray-700">
+                    <a href="{% url 'submit_exercise'  exercise_id=userid %}" class="hover:text-blue-600">
+                        Exercise
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+                <div class="icon text-center text-4xl text-purple-500 mb-4">&#128101;</div>
+                <div class="text-center font-bold text-lg text-gray-700">Collaboration</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+                <div class="icon text-center text-4xl text-yellow-500 mb-4">&#128197;</div>
+                <div class="text-center font-bold text-lg text-gray-700">
+                    <a href="{% url 'marks' %}" class="hover:text-blue-600">
+                        Marks
+                    </a>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+                <div class="icon text-center text-4xl text-red-500 mb-4">&#128200;</div>
+                <div class="text-center font-bold text-lg text-gray-700">
+                    <a href="#" class="hover:text-blue-600">
+                    Progress Tracking</a></div>
+            </div>
+        </div>
+    </div>
+{%include "footer.html"%}
+</body>
+
+</html>
